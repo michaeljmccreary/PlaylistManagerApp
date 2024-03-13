@@ -12,6 +12,8 @@ public class PlaylistManagerApp {
     
         public static void main(String[] args) {
         // TODO code application logic here
+        AddSongGUI addSongGUI = new AddSongGUI();
+        addSongGUI.setVisible(true);
     }
     
 }
