@@ -4,57 +4,37 @@
  */
 package playlistmanager;
 
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Michael McCreary
  */
 public class PopPlaylist implements PlaylistInterface {
-    
-//  Variabled
-    private String song;
-    private String artist;
-    private String genre;
+
+    private List<Song> songs; // List to hold multiple songs
     private boolean isRepeat;
-    
-//  Default Constructor
-    public PopPlaylist(){
-        
+
+    // Default Constructor
+    public PopPlaylist() {
+        this.songs = new ArrayList<>();
+        this.isRepeat = false;
     }
 
-//  Overloaded Constuctor
-    public PopPlaylist(String song, String artist, String genre, boolean isRepeat) {
-        this.song = song;
-        this.artist = artist;
-        this.genre = genre;
+    // Constructor that sets the repeat status
+    public PopPlaylist(boolean isRepeat) {
+        this.songs = new ArrayList<>();
         this.isRepeat = isRepeat;
     }
 
 //  Getters & Setters
-    public String getSong() {
-        return song;
+    public List<Song> getSongs() {
+        return songs;
     }
 
-    public void setSong(String song) {
-        this.song = song;
-    }
-
-    public String getArtist() {
-        return artist;
-    }
-
-    public void setArtist(String artist) {
-        this.artist = artist;
-    }
-
-    public String getGenre() {
-        return genre;
-    }
-
-    public void setGenre(String genre) {
-        this.genre = genre;
-    }
-
-    public boolean isIsRepeat() {
+    public boolean isRepeat() {
         return isRepeat;
     }
 
@@ -63,8 +43,8 @@ public class PopPlaylist implements PlaylistInterface {
     }
 
 //  Methods from Interface
-    @Override
     public void addSong(Song song) {
+        this.songs.add(song);
     }
 
     @Override
@@ -74,7 +54,31 @@ public class PopPlaylist implements PlaylistInterface {
 
     @Override
     public void display() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+//        If the playlist is empty it will alter the user
+        if (songs.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "The playlist has no songs");
+            return;
+        }
+
+        
+        StringBuilder message = new StringBuilder("Rock Playlist: \n");
+//      if the playlist is repeated display that it is
+        if (isRepeat) {
+            message.append("This playlist is on repeat. \n");
+        }
+
+//       Add each song to the message
+        for (Song song : songs) {
+            message.append(song.getArtist())
+                    .append(" - ")
+                    .append(song.getSong())
+                    .append(" [")
+                    .append(song.getGenre())
+                    .append("]\n");
+        }
+
+//       Display the accumulated message
+        JOptionPane.showMessageDialog(null, message.toString());
     }
 
     @Override
@@ -96,5 +100,5 @@ public class PopPlaylist implements PlaylistInterface {
     public void deleteSong(Song song) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
 }

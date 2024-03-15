@@ -14,6 +14,7 @@ public class PlaylistManagerApp {
         // TODO code application logic here
         PlaylistGUI playlistGUI = new PlaylistGUI();
         playlistGUI.setVisible(true);
+        playlistGUI.setLocationRelativeTo(null);
     }
     
 }

@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
  */
 public class LikedSongs implements LikedSongsInterface {
     
-    // Variables
+//   Variables
     private Stack<Song> likedList = new Stack<>();
     private Song lastLikedSong;
     private boolean movedSong = false;
@@ -42,18 +42,18 @@ public class LikedSongs implements LikedSongsInterface {
 
 //  Methods from Interface
     @Override
-    public void moveSong() { 
+    public void moveSong() {
 //     Boolean to check if a song has already been moved
-       if(movedSong){
+        if (movedSong) {
 //         If a song has already been moved throw an alert to the user as only the last liked song is allowed to be moved
-           JOptionPane.showMessageDialog(null, "You already added the last liked song to the genre Playlist");
-       } else if(likedList.isEmpty()){
+            JOptionPane.showMessageDialog(null, "You already added the last liked song to the genre Playlist");
+        } else if (likedList.isEmpty()) {
 //         If the user has not liked any songs, alert them of the fact
-           JOptionPane.showMessageDialog(null, "You have not liked any songs");
+            JOptionPane.showMessageDialog(null, "You have not liked any songs");
 //         If they user has liked songs and not moved any remove the last liked song and save it to a variable 
-       } else{
-           lastLikedSong = likedList.pop();
-       }   
+        } else {
+            lastLikedSong = likedList.pop();
+        }
     }
 
     @Override
