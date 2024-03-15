@@ -4,70 +4,70 @@
  */
 package playlistmanager;
 
+import java.util.Stack;
+import javax.swing.JOptionPane;
+
 /**
  *
- * @author micha
+ * @author Michael McCreary
  */
 public class LikedSongs implements LikedSongsInterface {
     
-//  Variables
-    private String song;
-    private String artist;
-    private String genre;
-    
-//  Default Constructor
-    public LikedSongs(){
-        this.song = song;
-        this.artist = artist;
-        this.genre = genre;
+    // Variables
+    private Stack<Song> likedList = new Stack<>();
+    private Song lastLikedSong;
+    private boolean movedSong = false;
+
+    public Song getLastLikedSong() {
+        return lastLikedSong;
     }
 
-//  Overloaded Constructor 
-    public LikedSongs(String song, String artist, String genre) {
-        this.song = song;
-        this.artist = artist;
-        this.genre = genre;
+    public void setLastLikedSong(Song lastLikedSong) {
+        this.lastLikedSong = lastLikedSong;
     }
 
-//  Getters & Setters   
-    public String getSong() {
-        return song;
+    // Default Constructor
+    public LikedSongs() {
+
     }
 
-    public void setSong(String song) {
-        this.song = song;
+    // Getters & Setters
+    public Stack<Song> getLikedList() {
+        return likedList;
     }
 
-    public String getArtist() {
-        return artist;
-    }
-
-    public void setArtist(String artist) {
-        this.artist = artist;
-    }
-
-    public String getGenre() {
-        return genre;
-    }
-
-    public void setGenre(String genre) {
-        this.genre = genre;
+    public void setLikedList(Stack<Song> likedList) {
+        this.likedList = likedList;
     }
 
 //  Methods from Interface
     @Override
-    public void moveSong() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void moveSong() { 
+//     Boolean to check if a song has already been moved
+       if(movedSong){
+//         If a song has already been moved throw an alert to the user as only the last liked song is allowed to be moved
+           JOptionPane.showMessageDialog(null, "You already added the last liked song to the genre Playlist");
+       } else if(likedList.isEmpty()){
+//         If the user has not liked any songs, alert them of the fact
+           JOptionPane.showMessageDialog(null, "You have not liked any songs");
+//         If they user has liked songs and not moved any remove the last liked song and save it to a variable 
+       } else{
+           lastLikedSong = likedList.pop();
+       }   
     }
 
     @Override
-    public void addSong() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void addSong(Song song) {
+        likedList.push(song);
     }
 
     @Override
     public void displayLikedSongs() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        StringBuilder sb = new StringBuilder();
+        for(Song song : likedList){
+               sb.append(song.getSong()).append(" by ").append(song.getArtist()).append(" [").append(song.getGenre()).append("]\n");
+    }
+        JOptionPane.showMessageDialog(null, sb.toString());
     }
     
 }

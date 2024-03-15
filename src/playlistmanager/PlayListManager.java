@@ -4,15 +4,15 @@
  */
 package playlistmanager;
 
+import java.util.List;
+
 /**
  *
  * @author Michael McCreary
  */
 public class PlayListManager {
 
-    /**
-     * @param args the command line arguments
-     */
-
-    
+    private String name;
+    private List<Song> songs;
+    private boolean isRepeat;
 }

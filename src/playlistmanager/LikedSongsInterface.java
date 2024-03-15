@@ -11,7 +11,7 @@ package playlistmanager;
 public interface LikedSongsInterface {
     
     void moveSong();
-    void addSong();
+    void addSong(Song song);
     void displayLikedSongs();
     
 }

@@ -18,10 +18,7 @@ public class PopPlaylist implements PlaylistInterface {
     
 //  Default Constructor
     public PopPlaylist(){
-        this.song = song;
-        this.artist = artist;
-        this.genre = genre;
-        this.isRepeat = isRepeat;
+        
     }
 
 //  Overloaded Constuctor
@@ -67,8 +64,7 @@ public class PopPlaylist implements PlaylistInterface {
 
 //  Methods from Interface
     @Override
-    public void addSong() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void addSong(Song song) {
     }
 
     @Override

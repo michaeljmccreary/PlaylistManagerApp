@@ -10,7 +10,7 @@ package playlistmanager;
  */
 public interface PlaylistInterface {
     
-        void addSong();
+        void addSong(Song song);
         void search();
         void delete();
         void display();
