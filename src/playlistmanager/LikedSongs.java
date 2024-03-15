@@ -8,12 +8,6 @@ package playlistmanager;
  *
  * @author micha
  */
-public class PlaylistManagerApp {
-    
-        public static void main(String[] args) {
-        // TODO code application logic here
-        PlaylistGUI playlistGUI = new PlaylistGUI();
-        playlistGUI.setVisible(true);
-    }
+public class LikedSongs {
     
 }

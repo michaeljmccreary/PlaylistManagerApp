@@ -8,6 +8,6 @@ package playlistmanager;
  *
  * @author micha
  */
-public class Playlist {
+public class RockPlaylist {
     
 }
