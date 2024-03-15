@@ -6,8 +6,14 @@ package playlistmanager;
 
 /**
  *
- * @author micha
+ * @author Michael McCreary
  */
 public interface PlaylistInterface {
     
+        void addSong();
+        void search();
+        void delete();
+        void display();
+        void moveUp();
+        void moveDown();
 }

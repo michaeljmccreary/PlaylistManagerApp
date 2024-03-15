@@ -6,8 +6,12 @@ package playlistmanager;
 
 /**
  *
- * @author micha
+ * @author Michael McCreary
  */
 public interface LikedSongsInterface {
+    
+    void moveSong();
+    void addSong();
+    void displayLikedSongs();
     
 }

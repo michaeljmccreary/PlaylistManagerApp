@@ -6,7 +6,7 @@ package playlistmanager;
 
 /**
  *
- * @author micha
+ * @author Michael McCreary
  */
 public class PlayListManager {
 
