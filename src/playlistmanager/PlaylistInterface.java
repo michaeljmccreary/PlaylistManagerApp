@@ -12,8 +12,10 @@ public interface PlaylistInterface {
     
         void addSong(Song song);
         void search();
-        void delete();
+        void deleteSong(Song song);
         void display();
+        void setIsRepeat(boolean isRepeat);
         void moveUp();
         void moveDown();
+        void createPlaylist(String genre);
 }

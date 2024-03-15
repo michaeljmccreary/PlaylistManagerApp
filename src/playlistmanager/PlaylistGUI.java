@@ -15,17 +15,17 @@ public class PlaylistGUI extends javax.swing.JFrame {
     /**
      * Creates new form PlaylistGUI
      */
-    
-    PopPlaylist pop;
-    RockPlaylist rock;
-    LikedSongs likedSongs;
+    private PopPlaylist pop;
+    private RockPlaylist rock;
+    private LikedSongs likedSongs;
+    private PlayListManager manager;
 
-    
     public PlaylistGUI() {
         initComponents();
         pop = new PopPlaylist();
         rock = new RockPlaylist();
         likedSongs = new LikedSongs();
+        manager = new PlayListManager();
     }
 
     /**
@@ -40,7 +40,7 @@ public class PlaylistGUI extends javax.swing.JFrame {
         buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
         jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        createPlaylist = new javax.swing.JButton();
         moveLastLikedSong = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
@@ -56,25 +56,25 @@ public class PlaylistGUI extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         songGenre = new javax.swing.JComboBox<>();
         LikeSong = new javax.swing.JButton();
-        display = new javax.swing.JButton();
+        displayPlaylist = new javax.swing.JButton();
         playlistSong = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jButton9 = new javax.swing.JButton();
+        addToPlaylist = new javax.swing.JButton();
         displayLikedSongs = new javax.swing.JButton();
 
         jTextField1.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jButton1.setText("Create Playlist");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        createPlaylist.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        createPlaylist.setText("Create Playlist");
+        createPlaylist.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                createPlaylistActionPerformed(evt);
             }
         });
 
-        moveLastLikedSong.setText("Move Last Liked Song To Genre Playlist");
+        moveLastLikedSong.setText("Move Last Liked Song To Playlist");
         moveLastLikedSong.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 moveLastLikedSongActionPerformed(evt);
@@ -146,11 +146,11 @@ public class PlaylistGUI extends javax.swing.JFrame {
             }
         });
 
-        display.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        display.setText("Display Playlist");
-        display.addActionListener(new java.awt.event.ActionListener() {
+        displayPlaylist.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        displayPlaylist.setText("Display Playlist");
+        displayPlaylist.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                displayActionPerformed(evt);
+                displayPlaylistActionPerformed(evt);
             }
         });
 
@@ -164,11 +164,11 @@ public class PlaylistGUI extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         jLabel9.setText("Song Name");
 
-        jButton9.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jButton9.setText("Add to playlist");
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
+        addToPlaylist.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        addToPlaylist.setText("Add to playlist");
+        addToPlaylist.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
+                addToPlaylistActionPerformed(evt);
             }
         });
 
@@ -229,9 +229,9 @@ public class PlaylistGUI extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(LikeSong, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(display, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(createPlaylist, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(addToPlaylist, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(displayPlaylist, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(displayLikedSongs))
                                 .addGap(30, 30, 30))))))
         );
@@ -245,21 +245,20 @@ public class PlaylistGUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(LikeSong)
                         .addGap(27, 27, 27)
-                        .addComponent(jButton1)
+                        .addComponent(createPlaylist)
                         .addGap(29, 29, 29)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton9)
+                            .addComponent(addToPlaylist)
                             .addComponent(jLabel4)
                             .addComponent(songArtist, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(45, 45, 45)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(songName, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(15, 15, 15)))
+                            .addComponent(songName, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(display)
+                    .addComponent(displayPlaylist)
                     .addComponent(songGenre, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 41, Short.MAX_VALUE)
@@ -284,20 +283,91 @@ public class PlaylistGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void createPlaylistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createPlaylistActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+//      Gets the Genre for the playlist based onnthe option selected by the user
+        String genre = (String) songGenre.getSelectedItem();
+        boolean isRepeat = false;
+        boolean created = false;
+
+        if (genre != null && !genre.trim().isEmpty()) {
+//          check if the playlist alrerady exists
+            if (manager.playlistExists(genre)) {
+                JOptionPane.showMessageDialog(this, "A playlist for " + genre + " already exists. You can add songs to it.");
+            } else {
+//              if the playlist doesn't exist ask the user if they want to create it and if they want it to be repeated
+                int repeat = JOptionPane.showConfirmDialog(this, "Do you want the " + genre + " playlist to play on repeat?", "Set Playlist Repeat", JOptionPane.YES_NO_OPTION);
+                isRepeat = (repeat == JOptionPane.YES_OPTION);
+
+//              create the playlist with the option for it to be repeated 
+                PlaylistInterface newPlaylist = PlayListManager.PlaylistFactory.createPlaylist(genre);
+                if (newPlaylist != null) {
+                    newPlaylist.setIsRepeat(isRepeat);
+//                  add the playlist to the playlist manager
+                    created = manager.createAndAddPlaylist(genre, newPlaylist);
+                    if (created) {
+//                      Alert the user the playlist was created and they can add songs to it
+                        JOptionPane.showMessageDialog(this, "Playlist for " + genre + " has been created, you can now add songs to it.");
+                    }
+                }
+            }
+        } else {
+//           If the user does not select a genre, remind them they need to
+            JOptionPane.showMessageDialog(this, "Please select a genre for your playlist.");
+        }
+    }//GEN-LAST:event_createPlaylistActionPerformed
 
     private void moveLastLikedSongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moveLastLikedSongActionPerformed
         // TODO add your handling code here:
         likedSongs.moveSong();
         Song lastLikedSong = likedSongs.getLastLikedSong();
-        
-        if(lastLikedSong.getGenre().equalsIgnoreCase("Rock")){
-            rock.addSong(lastLikedSong);
-        } else {
-            pop.addSong(lastLikedSong);
+
+//   Check to see if there is any liked songs to move
+        if (lastLikedSong == null) {
+            JOptionPane.showMessageDialog(this, "There are no liked songs to move.");
+            return;
         }
+        
+//      a lot of this code is copied from the create playlist button
+        String genre = lastLikedSong.getGenre();
+        boolean playlistExists = manager.playlistExists(genre);
+
+//      Check if the playlist already exists
+        if (!playlistExists) {
+//        if it does not exist prompt the user to create it
+            int create = JOptionPane.showConfirmDialog(this, "A playlist for " + genre + " doesn't exist. Do you want to create one?", "Create Playlist", JOptionPane.YES_NO_OPTION);
+            if (create == JOptionPane.YES_OPTION) {
+//            Ask if they want the new playlist to repeat.
+                int repeat = JOptionPane.showConfirmDialog(this, "Do you want the " + genre + " playlist to play on repeat?", "Set Playlist Repeat", JOptionPane.YES_NO_OPTION);
+                boolean isRepeat = (repeat == JOptionPane.YES_OPTION);
+
+//             Create and add the new playlist
+                PlaylistInterface newPlaylist = PlayListManager.PlaylistFactory.createPlaylist(genre);
+                if (newPlaylist != null) {
+                    newPlaylist.setIsRepeat(isRepeat);
+                    manager.createAndAddPlaylist(genre, newPlaylist);
+                    JOptionPane.showMessageDialog(this, "Playlist for " + genre + " created successfully.");
+                    playlistExists = true;
+                } else {
+                    JOptionPane.showMessageDialog(this, "There was an issue creating the playlist. Please try again.");
+                    return; 
+                }
+//           User chose not to create the playlist; exit early.
+            } else {
+                return; 
+            }
+        }
+    
+//     If the playlist exists add the song to it.
+    if (playlistExists) {
+        PlaylistInterface targetPlaylist = manager.getPlaylist(genre);
+        if (targetPlaylist != null) {
+            targetPlaylist.addSong(lastLikedSong);
+            JOptionPane.showMessageDialog(this, "Song moved to " + genre + " playlist successfully.");
+        } else {
+            JOptionPane.showMessageDialog(this, "Error: Could not retrieve the " + genre + " playlist.");
+        }
+    }
     }//GEN-LAST:event_moveLastLikedSongActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -315,25 +385,23 @@ public class PlaylistGUI extends javax.swing.JFrame {
     private void LikeSongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LikeSongActionPerformed
         // TODO add your handling code here:
 //      If user leaves any options null it will throw an error message 
-        if (songName.getText().trim().isEmpty() || songArtist.getText().trim().isEmpty() || songGenre.getSelectedItem() == null) {
+        if (songName.getText().trim().isEmpty() || songArtist.getText().trim().isEmpty() || songGenre.getSelectedItem().toString().trim().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please ensure to input song name, artist name and select a genre");
 //       If all fields are filled in correctly add song to liked songs
-        } else { 
-        String title = songName.getText();
-        String artist = songArtist.getText();
-        String genre = (String) songGenre.getSelectedItem();
-        
-        Song song = new Song(title, artist, genre);
-        
-        likedSongs.addSong(song);
+        } else {
+            String title = songName.getText();
+            String artist = songArtist.getText();
+            String genre = (String) songGenre.getSelectedItem();
+
+            Song song = new Song(title, artist, genre);
+
+            likedSongs.addSong(song);
         }
-        
-        
     }//GEN-LAST:event_LikeSongActionPerformed
 
-    private void displayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayActionPerformed
+    private void displayPlaylistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayPlaylistActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_displayActionPerformed
+    }//GEN-LAST:event_displayPlaylistActionPerformed
 
     private void songGenreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_songGenreActionPerformed
         // TODO add your handling code here:
@@ -347,13 +415,13 @@ public class PlaylistGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_songNameActionPerformed
 
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+    private void addToPlaylistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addToPlaylistActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton9ActionPerformed
+    }//GEN-LAST:event_addToPlaylistActionPerformed
 
     private void displayLikedSongsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayLikedSongsActionPerformed
         // TODO add your handling code here:
-        
+
         likedSongs.displayLikedSongs();
     }//GEN-LAST:event_displayLikedSongsActionPerformed
 
@@ -394,16 +462,16 @@ public class PlaylistGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton LikeSong;
+    private javax.swing.JButton addToPlaylist;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
-    private javax.swing.JButton display;
+    private javax.swing.JButton createPlaylist;
     private javax.swing.JButton displayLikedSongs;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton displayPlaylist;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
