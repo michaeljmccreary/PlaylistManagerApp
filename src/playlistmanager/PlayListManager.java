@@ -6,6 +6,7 @@ package playlistmanager;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 /**
  *
@@ -50,5 +51,10 @@ public class PlayListManager {
 //    Method to check is playlist exists for given genre
     public boolean playlistExists(String genre) {
         return playlists.containsKey(genre);
+    }
+    
+//    Method to get all the playlists this will be used for the search button to search all playlists for a song
+    public Set<String> getAllPlaylistGenres() {
+        return playlists.keySet();
     }
 }

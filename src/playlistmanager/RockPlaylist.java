@@ -5,6 +5,7 @@
 package playlistmanager;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -13,7 +14,7 @@ import javax.swing.JOptionPane;
  * @author Michael McCreary
  */
 public class RockPlaylist implements PlaylistInterface {
-    
+
     private List<Song> songs; // List to hold multiple songs
     private boolean isRepeat;
 
@@ -41,16 +42,11 @@ public class RockPlaylist implements PlaylistInterface {
     public void setIsRepeat(boolean isRepeat) {
         this.isRepeat = isRepeat;
     }
-    
+
 //  Methods from Interface
     @Override
     public void addSong(Song song) {
         this.songs.add(song);
-    }
-
-    @Override
-    public void search() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
@@ -61,7 +57,6 @@ public class RockPlaylist implements PlaylistInterface {
             return;
         }
 
-        
         StringBuilder message = new StringBuilder("Rock Playlist: \n");
 //      if the playlist is repeated display that it is
         if (isRepeat) {
@@ -83,23 +78,80 @@ public class RockPlaylist implements PlaylistInterface {
     }
 
     @Override
-    public void moveUp() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void moveUp(String title) {
+//        a for loop to loop through the playlist
+        for (int i = 0; i < songs.size(); i++) {
+            Song song = songs.get(i);
+//        if the song is in the playlist and not already at the top
+            if (song.getSong().equalsIgnoreCase(title) && i > 0) {
+//            Swap the songs
+                Song temp = songs.get(i - 1);
+                songs.set(i - 1, song);
+                songs.set(i, temp);
+                JOptionPane.showMessageDialog(null, "Song '" + title + "' moved up in the playlist");
+                return;
+            } else if (song.getSong().equalsIgnoreCase(title) && i == 0) {
+                JOptionPane.showMessageDialog(null, "Song '" + title + "' already at the top of the playlist");
+            }
+        }
+        JOptionPane.showMessageDialog(null, "Song '" + title + "' does not exist in the playlist");
+    }
+
+//    Inverted the move song up method
+    @Override
+    public void moveDown(String title) {
+//        a for loop to loop through the playlist
+        for (int i = 0; i < songs.size(); i++) {
+            Song song = songs.get(i);
+//        if the song is in the playlist and not already at the top
+            if (song.getSong().equalsIgnoreCase(title) && i < songs.size() - 1) {
+//            Swap the songs
+                Song temp = songs.get(i + 1);
+                songs.set(i + 1, song);
+                songs.set(i, temp);
+                JOptionPane.showMessageDialog(null, "Song '" + title + "' moved up in the playlist");
+                return;
+            } else if (song.getSong().equalsIgnoreCase(title) && i == songs.size() - 1) {
+                JOptionPane.showMessageDialog(null, "Song '" + title + "' already at the bottom of the playlist");
+            }
+        }
+        JOptionPane.showMessageDialog(null, "Song '" + title + "' does not exist in the playlist");
     }
 
     @Override
-    public void moveDown() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void deleteSong(String song) {
+        String normalizedTitle = song.toLowerCase();
+
+//      Use an iterator to remove items while iterating
+        Iterator<Song> iterator = songs.iterator();
+        while (iterator.hasNext()) {
+            Song currentSong = iterator.next();
+//           Check if the current song title matches the song the user wants tyo delete
+            if (currentSong.getSong().toLowerCase().equals(normalizedTitle)) {
+//              If a match is found remove the song from the list.
+                iterator.remove();
+                JOptionPane.showMessageDialog(null, "Song '" + currentSong.getSong() + "' has been deleted from the Rock Playlist");
+                return;
+            }
+        }
+
+//        if the song dis not part of the playlist
+        JOptionPane.showMessageDialog(null, "No song found matching the title: " + song + " in the Rock Playlist");
     }
 
+//    Method copied from pop playlist class
     @Override
-    public void createPlaylist(String genre) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public List search(String search) {
+        //       an array list to hold songs that match the users search
+        List<Song> foundSongs = new ArrayList<>();
+        for (Song song : songs) {
+            //          change song title to lowercase to make a search more effecient
+            if (song.getSong().toLowerCase().contains(search.toLowerCase())) {
+                //                if a song is found to match the search it gets added to the array list
+                foundSongs.add(song);
+            }
+        }
+//            return array list
+        return foundSongs;
     }
-
-    @Override
-    public void deleteSong(Song song) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
 }

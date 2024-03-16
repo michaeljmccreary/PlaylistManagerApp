@@ -4,6 +4,8 @@
  */
 package playlistmanager;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 import javax.swing.JOptionPane;
 
@@ -12,7 +14,7 @@ import javax.swing.JOptionPane;
  * @author Michael McCreary
  */
 public class LikedSongs implements LikedSongsInterface {
-    
+
 //   Variables
     private Stack<Song> likedList = new Stack<>();
     private Song lastLikedSong;
@@ -53,21 +55,40 @@ public class LikedSongs implements LikedSongsInterface {
 //         If they user has liked songs and not moved any remove the last liked song and save it to a variable 
         } else {
             lastLikedSong = likedList.pop();
+//          makes the method true meaning the last liked song was moved 
+            movedSong = true;
         }
     }
 
     @Override
     public void addSong(Song song) {
         likedList.push(song);
+//      resets moved song to false if they user likes another song after moving a song already
+        movedSong = false;
     }
 
     @Override
     public void displayLikedSongs() {
         StringBuilder sb = new StringBuilder();
-        for(Song song : likedList){
-               sb.append(song.getSong()).append(" by ").append(song.getArtist()).append(" [").append(song.getGenre()).append("]\n");
-    }
+        for (Song song : likedList) {
+            sb.append(song.getSong()).append(" by ").append(song.getArtist()).append(" [").append(song.getGenre()).append("]\n");
+        }
         JOptionPane.showMessageDialog(null, sb.toString());
     }
-    
+
+//   Method copied from pop playlist class
+    @Override
+    public List<Song> search(String search) {
+//       an array list to hold songs that match the users search
+        List<Song> foundSongs = new ArrayList<>();
+        for (Song song : likedList) {
+//            change song title to lowercase to make a search more effecient
+            if (song.getSong().toLowerCase().contains(search.toLowerCase())) {
+//                if a song is found to match the search it gets added to the array list
+                foundSongs.add(song);
+            }
+        }
+//        return array list
+        return foundSongs;
+    }
 }

@@ -42,13 +42,13 @@ public class PlaylistGUI extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         createPlaylist = new javax.swing.JButton();
         moveLastLikedSong = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        deleteButton = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         playlistGenre = new javax.swing.JComboBox<>();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        moveSongDown = new javax.swing.JButton();
+        moveSongUp = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        jButton8 = new javax.swing.JButton();
+        searchButton = new javax.swing.JButton();
         songName = new javax.swing.JTextField();
         songArtist = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -80,10 +80,10 @@ public class PlaylistGUI extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setText("Delete song");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        deleteButton.setText("Delete song");
+        deleteButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                deleteButtonActionPerformed(evt);
             }
         });
 
@@ -93,17 +93,27 @@ public class PlaylistGUI extends javax.swing.JFrame {
         playlistGenre.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         playlistGenre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Rock", "Pop" }));
 
-        jButton6.setText("Move song down");
+        moveSongDown.setText("Move song down");
+        moveSongDown.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                moveSongDownActionPerformed(evt);
+            }
+        });
 
-        jButton7.setText("Move song up");
+        moveSongUp.setText("Move song up");
+        moveSongUp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                moveSongUpActionPerformed(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         jLabel7.setText("Playlist Manager ");
 
-        jButton8.setText("Search song ");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        searchButton.setText("Search song ");
+        searchButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                searchButtonActionPerformed(evt);
             }
         });
 
@@ -174,104 +184,89 @@ public class PlaylistGUI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 89, Short.MAX_VALUE)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel3)
-                                    .addGap(56, 56, 56)
-                                    .addComponent(songName, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel6)
-                                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(songArtist, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(songGenre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(LikeSong, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(createPlaylist, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(addToPlaylist, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(moveSongUp, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(moveSongDown))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(moveLastLikedSong, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabel3)
+                                            .addGap(43, 43, 43)
+                                            .addComponent(songName, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel6)
+                                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGap(91, 91, 91)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(songArtist, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(songGenre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(playlistGenre, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(89, 89, 89)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(LikeSong, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(createPlaylist, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(addToPlaylist, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(displayPlaylist, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(displayLikedSongs, javax.swing.GroupLayout.Alignment.TRAILING)))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(playlistGenre, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(displayLikedSongs))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(moveLastLikedSong, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(displayPlaylist, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(34, 34, 34))
+                        .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(55, 55, 55))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(256, 256, 256)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addGap(20, 20, 20)
                 .addComponent(jLabel7)
+                .addGap(49, 49, 49)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3)
+                        .addComponent(songName, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(124, 124, 124)
-                                .addComponent(jLabel4))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(57, 57, 57)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel3)
-                                    .addComponent(songName, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(33, 33, 33)
-                        .addComponent(jLabel6))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(57, 57, 57)
                         .addComponent(LikeSong)
                         .addGap(26, 26, 26)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(createPlaylist)
-                            .addComponent(songArtist, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(28, 28, 28)
+                            .addComponent(songArtist, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))
+                        .addGap(27, 27, 27)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(addToPlaylist)
-                            .addComponent(songGenre, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(playlistGenre, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(27, 27, 27)
-                        .addComponent(displayPlaylist)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(displayLikedSongs)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton6))
-                        .addGap(18, 18, 18)))
+                            .addComponent(songGenre, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6))))
+                .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton8)
-                    .addComponent(jButton4)
-                    .addComponent(moveLastLikedSong, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(42, 42, 42))
+                    .addComponent(moveLastLikedSong, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(displayLikedSongs))
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(displayPlaylist)
+                    .addComponent(playlistGenre, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(moveSongDown)
+                    .addComponent(moveSongUp, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(deleteButton)
+                    .addComponent(searchButton))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         pack();
@@ -321,7 +316,7 @@ public class PlaylistGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "There are no liked songs to move.");
             return;
         }
-        
+
 //      a lot of this code is copied from the create playlist button
         String genre = lastLikedSong.getGenre();
         boolean playlistExists = manager.playlistExists(genre);
@@ -342,30 +337,89 @@ public class PlaylistGUI extends javax.swing.JFrame {
                     manager.createAndAddPlaylist(genre, newPlaylist);
                     JOptionPane.showMessageDialog(this, "Playlist for " + genre + " created successfully.");
                     playlistExists = true;
-                } 
+                }
 //           User chose not to create the playlist; exit early.
             } else {
-                return; 
+                return;
             }
         }
-    
+
 //     If the playlist exists add the song to it.
-    if (playlistExists) {
-        PlaylistInterface targetPlaylist = manager.getPlaylist(genre);
-        if (targetPlaylist != null) {
-            targetPlaylist.addSong(lastLikedSong);
-            JOptionPane.showMessageDialog(this, "Song moved to " + genre + " playlist successfully.");
-        } 
-    }
+        if (playlistExists) {
+            PlaylistInterface targetPlaylist = manager.getPlaylist(genre);
+            if (targetPlaylist != null) {
+                targetPlaylist.addSong(lastLikedSong);
+                JOptionPane.showMessageDialog(this, "Song moved to " + genre + " playlist successfully.");
+            }
+        }
     }//GEN-LAST:event_moveLastLikedSongActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+        String title = songName.getText();
+        String genre = (String) playlistGenre.getSelectedItem();
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+//       Throws an error if the user does not enter a song or select a playlist
+        if (title.isEmpty() || genre == null || genre.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Please ensure to input song name and select a playlist");
+            return;
+        }
+
+//    get the playlist based on the users input
+        PlaylistInterface playlist = manager.getPlaylist(genre);
+        if (playlist == null) {
+            JOptionPane.showMessageDialog(null, "The playlist for " + genre + " does not exist.");
+            return;
+        }
+
+//  Call the delete method inside the playlist 
+        playlist.deleteSong(title);
+    }//GEN-LAST:event_deleteButtonActionPerformed
+
+    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton8ActionPerformed
+        String title = songName.getText();
+//      Display an error if the user does not enter a song name
+        if (title == null || title.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Please enter a valid song in the song name field to search");
+            return;
+        }
+
+//    String builder will be used to dispolay the results, be used if found in more than 1 playlist
+        StringBuilder searchResults = new StringBuilder();
+//    used to know if a song is found
+        boolean found = false;
+
+//     Search RRock and Pop Playlists
+//      Iterate over each playlist managed by your PlayListManager
+        for (String genre : manager.getAllPlaylistGenres()) {
+            PlaylistInterface playlist = manager.getPlaylist(genre);
+            for (Song song : playlist.search(title)) {
+                if (song.getSong().equalsIgnoreCase(title.trim())) {
+                    found = true;
+                    searchResults.append("Found in ").append(genre).append(" playlist\n");
+//                Stop searching this playlist if the song is found
+                    break;
+                }
+            }
+        }
+
+        // Also, include the Liked Songs playlist in the search
+        for (Song song : likedSongs.search(title)) {
+            if (song.getSong().equalsIgnoreCase(title.trim())) {
+                found = true;
+                searchResults.append("Found in Liked Songs playlist\n");
+                break;
+            }
+        }
+
+//    Display Results
+        if (found) {
+            JOptionPane.showMessageDialog(null, "Song found in the following playlist(s):\n" + searchResults.toString());
+        } else {
+            JOptionPane.showMessageDialog(null, "This song is not in any of your playlists");
+        }
+    }//GEN-LAST:event_searchButtonActionPerformed
 
     private void songArtistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_songArtistActionPerformed
         // TODO add your handling code here:
@@ -394,14 +448,14 @@ public class PlaylistGUI extends javax.swing.JFrame {
 
 //      If user leaves any options null it will throw an error message 
         if (genre == null || genre.trim().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Please select a genre to display");
+            JOptionPane.showMessageDialog(null, "Please select a playlist to display");
             return;
         }
         PlaylistInterface playlist = manager.getPlaylist(genre);
 
         // Check if a playlist exists for the selected genre
         if (playlist == null) {
-            JOptionPane.showMessageDialog(null, "No playlist exists for the genre: " + genre);
+            JOptionPane.showMessageDialog(null, "No playlist exists for " + genre);
         } else {
             // If the playlist exists, call its display method to show its contents
             playlist.display();
@@ -428,7 +482,6 @@ public class PlaylistGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Please ensure to input song name, artist name and select a genre.");
             return;
         }
-
 
         PlaylistInterface playlist = manager.getPlaylist(genre);
 
@@ -465,6 +518,51 @@ public class PlaylistGUI extends javax.swing.JFrame {
 
         likedSongs.displayLikedSongs();
     }//GEN-LAST:event_displayLikedSongsActionPerformed
+
+    private void moveSongUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moveSongUpActionPerformed
+        // TODO add your handling code here:
+        String genre = (String) playlistGenre.getSelectedItem();
+        String title = songName.getText().trim();
+
+//       If the user does not enter a song name or does not select a playlist
+        if (title.isEmpty() || genre == null || genre.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Please ensure to enter song name and select a playlist");
+            return;
+        }
+
+//  get the playlist based on users input
+        PlaylistInterface playlist = manager.getPlaylist(genre);
+        if (playlist == null) {
+            JOptionPane.showMessageDialog(null, "The playlist for " + genre + " does not exist");
+            return;
+        }
+
+//     move the song up the playlist
+        playlist.moveUp(title);
+    }//GEN-LAST:event_moveSongUpActionPerformed
+
+//    Copid from the move song up button
+    private void moveSongDownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moveSongDownActionPerformed
+        // TODO add your handling code here:
+        String genre = (String) playlistGenre.getSelectedItem();
+        String title = songName.getText().trim();
+
+//        If the user does not enter a song name or sselect a playlist, throw an error
+        if (title.isEmpty() || genre == null || genre.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Please enter song name and select a playlist.");
+            return;
+        }
+
+//       Get the playlist based on the users input 
+        PlaylistInterface playlist = manager.getPlaylist(genre);
+        if (playlist == null) {
+            JOptionPane.showMessageDialog(null, "The playlist for " + genre + " does not exist.");
+            return;
+        }
+
+//      move the song down the playlist
+        playlist.moveDown(title);
+    }//GEN-LAST:event_moveSongDownActionPerformed
 
     /**
      * @param args the command line arguments
@@ -507,12 +605,9 @@ public class PlaylistGUI extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JButton createPlaylist;
+    private javax.swing.JButton deleteButton;
     private javax.swing.JButton displayLikedSongs;
     private javax.swing.JButton displayPlaylist;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -520,7 +615,10 @@ public class PlaylistGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JButton moveLastLikedSong;
+    private javax.swing.JButton moveSongDown;
+    private javax.swing.JButton moveSongUp;
     private javax.swing.JComboBox<String> playlistGenre;
+    private javax.swing.JButton searchButton;
     private javax.swing.JTextField songArtist;
     private javax.swing.JComboBox<String> songGenre;
     private javax.swing.JTextField songName;

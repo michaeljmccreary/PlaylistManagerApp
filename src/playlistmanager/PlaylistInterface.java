@@ -4,6 +4,8 @@
  */
 package playlistmanager;
 
+import java.util.List;
+
 /**
  *
  * @author Michael McCreary
@@ -11,11 +13,10 @@ package playlistmanager;
 public interface PlaylistInterface {
     
         void addSong(Song song);
-        void search();
-        void deleteSong(Song song);
+        void deleteSong(String song);
         void display();
         void setIsRepeat(boolean isRepeat);
-        void moveUp();
-        void moveDown();
-        void createPlaylist(String genre);
+        void moveUp(String song);
+        void moveDown(String title);
+        List<Song> search(String search);
 }

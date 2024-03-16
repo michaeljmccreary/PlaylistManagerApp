@@ -4,6 +4,8 @@
  */
 package playlistmanager;
 
+import java.util.List;
+
 /**
  *
  * @author Michael McCreary
@@ -13,5 +15,6 @@ public interface LikedSongsInterface {
     void moveSong();
     void addSong(Song song);
     void displayLikedSongs();
+    List<Song> search(String search);
     
 }
